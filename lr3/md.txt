@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include <stdint.h>
+#include <string.h>
+bool check_parity(float f)
+{
+	uint32_t bits;
+	memcpy(&bits, &f, sizeof(bits));
+
+	int count = 0;
+	while (bits) {
+		count += bits & 1;
+		bits >>= 1;
+	}
+	if (count % 2 == 0)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+struct s {
+	int a;
+	float b;
+};
+void check(short arg1, unsigned char arg2, s arg3)
+{
+	if (!arg3.a)
+	{
+		printf("access denied");
+		return;
+	}
+	bool flag = check_parity(arg3.b);
+	if(!flag)
+	{
+		printf("access denied");
+		return;
+	}
+	if (arg1 + arg2 <= 6311)
+	{
+		printf("access denied");
+		return;
+	}
+	printf("access granted");
+}
+int main()
+{
+	s ar;
+	ar.a = 1324;
+	ar.b = -16;
+	check(30000, 150, ar);
+	return 0;

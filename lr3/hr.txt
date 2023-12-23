@@ -1,0 +1,43 @@
+#include<stdio.h>
+struct S
+{
+	int a;
+	int b;
+};
+class C
+{
+public:
+	short int x[3];
+	void access(const S& arg)
+	{
+		int tmp = arg.b;
+		tmp <<= x[0];
+		//float tmp = (float)(*((unsigned int*)&arg.b) << x[0]);
+		//tmp <<= x[0];
+		tmp += x[1];
+		float tmp2 = tmp;
+		if (tmp2 <= arg.a)
+		{
+			printf("access denied");
+			return;
+		}
+		if (x[2] == 0)
+		{
+			printf("access denied");
+			return;
+		}
+		printf("access granted");
+	}
+};
+int main()
+{
+	C ar;
+	ar.x[0] = 0;//41
+	ar.x[1] = 0;//412
+	ar.x[2] = 0;//324
+	S dr;
+	dr.a = 0; //1
+	dr.b = 0; //412, -4
+	ar.access(dr);
+	return 0;
+}

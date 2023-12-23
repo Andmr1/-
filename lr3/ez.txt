@@ -1,0 +1,18 @@
+#include <stdio.h>
+void access3(long long arg1, short int arg2, short int arg3, long long arg4)
+{
+	long long res = (arg1 * arg1) + (arg3 / arg2) + arg4;
+	if (res == -1)
+	{
+		printf("Access granted");
+	}
+	else
+	{
+		printf("access denied");
+	}
+}
+int main()
+{
+	access3(0, 1, 0, -1);
+	return 0;
+}
